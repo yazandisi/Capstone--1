@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<div class="container">
+  {% for msg in get_flashed_messages()%} {% if msg != 'Logout successful!'%}
+  <p class="alert alert-danger">{{msg}}</p>
+  {% else %}
+  <p class="alert alert-info">{{msg}}</p>
+  {% endif %} {% endfor %}
+  <nav class="index_nav">
+    <ul>
+      <li><h1>Video Game Extract</h1></li>
+      <li><a href="/login">login</a></li>
+      <li><a href="/register">signup</a></li>
+    </ul>
+  </nav>
+</div>
+{% endblock %}

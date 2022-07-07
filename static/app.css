@@ -1,0 +1,250 @@
+body {
+  background: white;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  background-image: -moz-linear-gradient(255, 0, 0);
+}
+.wrapper {
+  animation: scroll 70s linear infinite;
+  background: url("https://images.unsplash.com/10/wii.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"),
+    #edecec;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  color: #edecec;
+}
+@keyframes scroll {
+  100% {
+    background-position: 0px -2000px;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+div {
+  margin: 1vw;
+}
+
+.info_img {
+  border-radius: 20%;
+  text-align: center;
+  border: solid thick;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  height: 10%;
+}
+.hide {
+  display: none;
+}
+.img_container {
+  border: solid;
+  text-align: center;
+}
+.container {
+  text-align: center;
+  display: grid;
+  color: black;
+}
+table {
+  color: white;
+}
+.nav li {
+  display: inline;
+}
+
+.logout {
+  position: relative;
+  left: 40vw;
+}
+.index_nav {
+  padding: 200px 0;
+  text-align: center;
+}
+
+.container_one {
+  margin-top: 5%;
+  opacity: 95%;
+  color: black;
+  background-color: white;
+  -moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+.container_two {
+  margin-top: 15%;
+  opacity: 95%;
+  color: black;
+  -moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  background-color: white;
+}
+/* label {
+  color: white;
+  border: inset;
+  background-color: grey;
+  margin: 8%;
+  font-weight: bold;
+} */
+a {
+  color: black;
+}
+
+.summary {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: white;
+}
+
+.logout button {
+  color: white;
+}
+.logout button:hover {
+  color: black;
+}
+.welcom_home {
+  margin-top: 1%;
+  opacity: 95%;
+  color: black;
+
+  font-weight: bold;
+}
+.cat_data {
+  color: black;
+  background-color: white;
+  opacity: 90%;
+}
+.game_res {
+  position: relative;
+  right: 2vw;
+}
+
+.game_res p {
+  border: solid inset black;
+  background-color: white;
+  position: relative;
+  width: auto;
+  left: -15vw;
+}
+.game_res input {
+  display: block;
+  position: relative;
+  width: 3em;
+  height: 1.6em;
+  margin-bottom: 20px;
+  border-radius: 1em;
+  background: #000000;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  content: "";
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 1em;
+  background: #e84d4d;
+  position: absolute;
+  left: 12vw;
+  top: 0em;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(0deg);
+}
+.game_res li a {
+  color: black;
+}
+
+h3 {
+  background-color: white;
+  text-align: center;
+}
+.res_img {
+  width: 100%;
+  position: relative;
+  left: -15vw;
+  margin-bottom: 10%;
+}
+.res_img img {
+  position: relative;
+  left: 15vw;
+  border-radius: 10%;
+  border: solid thick;
+  margin-left: 0%;
+}
+.form {
+  color: black;
+}
+
+.res_table .th_one {
+  position: relative;
+  left: -10vw;
+  font-size: 20px;
+  background-color: black;
+}
+.res_table .th_two {
+  position: relative;
+  left: 9vw;
+  font-size: 20px;
+  background-color: black;
+  margin-bottom: 3%;
+  margin-top: 5%;
+}
+.a_res {
+  color: white;
+  font-weight: thick;
+}
+iframe {
+  border: inset;
+}
+.home_cat {
+  color: black;
+}
+
+.js_img {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0vw;
+  top: 0vw;
+  z-index: -1;
+  animation-delay: 100s;
+}
+
+.name {
+  color: white;
+  background-color: black;
+  width: 50;
+  text-align: center;
+}
+
+.ol_comments {
+  color: white;
+  background-color: black;
+  width: 25%;
+  margin-top: 2%;
+}
+h2 {
+  text-align: left;
+}
+.res_logout {
+  position: relative;
+  left: 40vw;
+}
+.res_home {
+  font-size: large;
+
+  width: fit-content;
+  color: white;
+}
+.res_title {
+  color: #000000;
+  font-weight: bolder;
+}
+.game_label {
+  font-weight: bolder;
+}

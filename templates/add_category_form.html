@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1>Add Category</h1>
+<div class="container">
+  <form method="POST">
+    {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
+    'hidden'%}
+    <p>
+      {{field.label(class_="form-label")}} {{field(class_="form-control")}} {%
+      for err in field.errors %} {{err}} {% endfor %}
+    </p>
+    {% endfor %}
+    <button>Submit</button>
+  </form>
+  <br />
+  <a href="/game-home">Go Back</a>
+</div>
+{% endblock %}
