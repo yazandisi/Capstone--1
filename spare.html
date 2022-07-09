@@ -1,36 +1,37 @@
 {% extends 'base.html' %} {% block title %}Sign Up{% endblock %} {% block
-content %}
-<link rel="stylesheet" href="/static/app.css" />
+content %} {% for msg in get_flashed_messages()%}
+<p class="alert alert-info">{{msg}}</p>
+{% endfor %}
 <div class="container">
   <form action="/logout" method="POST">
     <button type="submit" class="res_logout">logout</button>
   </form>
   <a class="res_home" href="/game-home"><p>Home-page</p></a>
-  <h1 class="res_title">Game Search Engine</h1>
+  <div class="home_game_head">
+    <h1 class="res_title">Game Search Engine</h1>
 
-  <form method="POST" class="form_head">
-    {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
-    'hidden' %}
+    <form method="POST">
+      {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+      'hidden' %}
 
-    <h5 class="game_label">
-      {{field.label}} {{field(class_="form-control")}} {% for error in
-      field.errors %}
-      <span class="form-text text-danger">{{error}}</span>
-      {% endfor %}
+      <h5 class="game_label">
+        {{field.label}} {{field(class_="form-control")}} {% for error in
+        field.errors %}
+        <span class="form-text text-danger">{{error}}</span>
+        {% endfor %}
       </h5>
-    {% endfor %}
+      {% endfor %}
 
-    <button class="" type="submit">Submit</button>
-  </form>
+      <button class="sub_home_and_result" type="submit">Submit</button>
+    </form>
+  </div>
+  {% for id in info %} {% for n in info %} {% for u in n %}
 
-  {% for msg in get_flashed_messages()%}
-  <p class="alert alert-info">{{msg}}</p>
-  {% endfor %} {% for id in info %} {% for n in info %} {% for u in n %}
   <div class="game_res" id="{{u.id}}">
     <ul class="ul_summary">
       <li>
-        <h2>Favorite</h3>
-        <h3 class="title">
+        <h2 class="title">
+          <h5 class="favorite_game_res">Favorite</h5>
           <a
             class="a_res"
             href="{{u.url}}"

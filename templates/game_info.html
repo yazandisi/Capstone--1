@@ -8,6 +8,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
     <link href="https://css.gg/trash.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,63 +22,124 @@
     <link rel="stylesheet" href="/static/app.css" />
     <title>Game Info Page</title>
   </head>
+  <header>
+    {% for msg in get_flashed_messages()%}
+    <p class="alert alert-info">{{msg}}</p>
+    {% endfor %}
+
+    <div class="quick_link_and_imgs">
+      <ul>
+        <li>
+          <form action="/logout" method="POST">
+            <button type="submit" class="logout_info">logout</button>
+          </form>
+        </li>
+        <li>
+          <a class="" href="/game-home"
+            ><button class="home_button_info">Home</button></a
+          >
+        </li>
+        <li>
+          <a
+            class="fan_link"
+            href="https://gamefaqs.gamespot.com/search?game={{game.title}}"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Game Guide Search
+          </a>
+        </li>
+        <li>
+          <a
+            class="fan_link"
+            href="https://www.fandom.com/?s={{game.title}}"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Fandom Quick Search
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
   <body class="info_body">
-    <link rel="stylesheet" href="/static/app.css" />
-    <div class="info_container">
-      <div class="save">
-        {% for msg in get_flashed_messages()%}
-        <p class="alert alert-info">{{msg}}</p>
-        {% endfor %}
-        <form action="/logout" method="POST" class="logout">
-          <button type="submit" class="btn btn-link">logout</button>
+    <div class="game_info_img">
+      {% for i in img %}
+      <img src="{{i.url}}" alt="" />
+      {% endfor %}
+    </div>
+
+    <div class="head_game_info">
+      <h1 class="name">{{game.title}}</h1>
+      <div class="notes">
+        <h4>Personal Notes</h4>
+        <form action="/game_info/comment/{{game.id}}" method="POST">
+          <label class="label_text_box" for="comments"></label>
+          <textarea
+            class="textarea"
+            name="comments"
+            id="comments"
+            placeholder="Type here"
+            rows="8"
+          ></textarea>
+          <button type="submit" value="submit">Submit</button>
         </form>
-        <nav>
-          <ul class="nav">
-            <li><a href="/game-home">Home</a></li>
-          </ul>
-        </nav>
 
-        <div class="img_container"></div>
-        <h1 class="name">{{game.title}}</h1>
-
-        {% for i in img %}
-        <img src="https:{{i.url}}" alt="" />
-        {% endfor %}
-
-        <p></p>
-
-        <iframe
-          width="420"
-          height="315"
-          src="https://www.youtube.com/embed/{{vid_data[0]['video_id']}}"
-          allowfullscreen
-        >
-        </iframe>
-        <div class="comments_div">
-          <ul>
-            <form action="/game_info/comment/{{game.id}}" method="POST">
-              <li><label for="comments">Add comments</label></li>
-              <li>
-                <textarea
-                  name="comments"
-                  id="comments"
-                  cols="30"
-                  rows="5"
-                ></textarea>
-              </li>
-              <li><input type="submit" value="submit" name="comments" /></li>
-            </form>
-          </ul>
-
-          <ol class="ol_comments">
-            <h3>Comments</h3>
-            {% for c in comment %}
-            <li>{{c.comment}}</li>
+        <ul>
+          {% for c in comment %}
+          <li class="indi_notes">
+            <p>{{c.comment}}</p>
             {% endfor %}
-          </ol>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
+    <iframe
+      width="470"
+      height="415"
+      src="https://www.youtube.com/embed/{{vid_data[0]['video_id']}}"
+      allowfullscreens
+      class="frame"
+    >
+    </iframe>
+    <div class="hold">
+      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+      <div id="DivID"></div>
+      <script type="text/javascript">
+        var options = {
+          width: 854,
+          height: 480,
+          channel: "{{live_video}}",
+          video: "Assassins",
+        };
+        var player = new Twitch.Player("DivID", options);
+        player.setVolume(0.5);
+      </script>
+    </div>
+    <div class="tweet">
+      <a
+        class="twitter-timeline"
+        href="https://twitter.com/GameSpot?ref_src=twsrc%5Etfw"
+        >Tweets by GameSpot</a
+      >
+      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+    </div>
+    <!-- <iframe
+      src="https://player.twitch.tv/?channel=dallas&parent=https//:127.0.0.1//localhost&muted=true"
+      height="720"
+      width="1280"
+      allowfullscreen
+    >
+    </iframe> -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
     <script src="/static/gameInfo.js"></script>

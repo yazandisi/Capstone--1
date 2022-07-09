@@ -3,24 +3,28 @@ content %} {% for msg in get_flashed_messages()%}
 <p class="alert alert-danger">{{msg}}</p>
 {% endfor %}
 <div class="container">
-  <h1 class="display-1">Sign up</h1>
-  <p>Sign up bellow to start creating game lists</p>
+  <div class="head">
+    <h1 class="display-1">Sign up</h1>
+    <p>Sign up bellow to start creating game lists</p>
+  </div>
+  <div class="log_form">
+    <form method="POST">
+      {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+      'hidden' %}
 
-  <form method="POST">
-    {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
-    'hidden' %}
-
-    <p>
-      {{field.label}} {{field(class_="form-control")}} {% for error in
-      field.errors %}
-      <span class="form-text text-danger">{{error}}</span>
+      <p class="login_label">
+        {{field.label}} {{field(class_="form-control")}} {% for error in
+        field.errors %}
+        <span class="form-text text-danger">{{error}}</span>
+        {% endfor %}
+      </p>
       {% endfor %}
-    </p>
-    {% endfor %}
 
-    <button class="btn btn-success" type="submit">Sign Up</button>
-  </form>
-  <a href="/">go back</a>
+      <button class="log_btn" type="submit">Sign Up</button>
+    </form>
+    <br />
+    <a class="log_go_back" href="/">Go Back</a>
+  </div>
 </div>
 
 <script src="/static/app.js"></script>

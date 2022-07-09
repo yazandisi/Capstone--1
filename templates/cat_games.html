@@ -1,5 +1,14 @@
 {% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
-%} {% for i in info %}
-<h1>{{i.title}}</h1>
-
-{% endfor %} <a href="/game-home">go back</a>{% endblock %}
+%}
+<div class="head">
+  <h1>The {{cat.name}} Game List</h1>
+  <ul>
+    {% for i in info %}
+    <li>
+      <a href="/game_info/{{i.id}}"><h5>{{i.title}}</h5></a>
+    </li>
+    {% endfor %}
+  </ul>
+  <a href="/game-home">Go Back</a>
+</div>
+{% endblock %}

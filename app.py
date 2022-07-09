@@ -1,3 +1,4 @@
+from unicodedata import category
 from s import key, c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
 # request
@@ -7,7 +8,7 @@ import requests
 req_session = requests.session
 from models import db, connect_db, Category_Game, Category, Game, User, Comment
 from forms import UserForm, AddGameForm, AddCategoryForm
-from search_logic import search_logic, search_by_id_logic, search_for_vid
+from search_logic import search_logic, search_by_id_logic, search_for_vid, get_live_video
 
 app = Flask(__name__)
 
@@ -17,11 +18,6 @@ app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'Yazan'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
-
-
-# key ='acszo6wtibxnv5kkyjfvx4dy8vrjcj'
-# c_id='o5ny07nd7uy2wol6w70f8bo17qhv1a'
-# a_id = 'Bearer nwylltbgpyzj0hb8xohtrl6y5x7he1'
 
 connect_db(app)
 data=[]
@@ -50,11 +46,11 @@ def game_result():
 def game_home():
     games = Game.query.all()
     cat_form = AddCategoryForm()
-    category = Category.query.filter_by(user_id=session['user_id']).all()
     if "user_id" not in session:
         flash("Please login!")
         return redirect('/')
     form = AddGameForm()
+    category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
         data.append(search_logic(form,data,c_id,a_id))
         return redirect('/game_result')
@@ -70,6 +66,7 @@ def game_home():
             new_playlist = Category(name=name, description=description, user_id=session['user_id'])
             db.session.add(new_playlist)
             db.session.commit()
+            flash('Catagory Created')
             return redirect('/game-home')
     else:
         return render_template('game-home.html',form=form, games=games, category=category, cat_form=cat_form)
@@ -94,6 +91,9 @@ def register_user():
 
 @app.route('/game_info/<int:id>', methods=['GET', 'POST'])
 def game_info(id):
+    if "user_id" not in session:
+        flash("Please login!")
+        return redirect('/')
     game = Game.query.get_or_404(id)
     comment = Comment.query.filter_by(user_id=session['user_id'],game_id=id).all()
     if session['user_id'] != game.user_id:
@@ -104,9 +104,10 @@ def game_info(id):
     img = info[0]["screenshots"]
     video = info[0]["videos"][0]
     vid_data = search_for_vid(video,data, c_id, a_id)
-
-
-    return render_template('game_info.html', game=game, info=info, img=img, video=video, vid_data=vid_data, comment=comment)
+    live_video = get_live_video(game.title)
+    print('57483975708932758930275983479')
+    print(live_video)
+    return render_template('game_info.html', game=game, info=info, img=img, vid_data=vid_data, comment=comment, live_video=live_video)
 
 @app.route('/game_info/comment/<int:id>', methods=['POST'])
 def submit_comment(id):
@@ -145,8 +146,7 @@ def get_fav():
         "fav_name":"",
         "api_Id":"",
     }
-    print(request.json['fav_input'])
-    print(request.json['fav_name'])
+
     
     if request.json['fav_input'] == 'on':
         title = request.json['fav_name']
@@ -166,30 +166,30 @@ def delete_fav():
         "fav_name":""
     }
     title = request.json['fav_name']
-    
     game = Game.query.filter_by(title=title, user_id=session['user_id']).first()
-    print(game.id)
+    category_game = Category_Game.query.filter(Category_Game.game_id==game.id).first()
+    db.session.delete(category_game)
+    db.session.commit()
     all_comments = Comment.query.filter(Comment.game_id==game.id).all()
-    print(all_comments)
-    print("******************COMMENTS****************")
-   
-
+    
     for a in all_comments:
         db.session.delete(a)
         db.session.commit()
     db.session.delete(game)
     db.session.commit()
-    print('*******************DELETED***********************')
     return jsonify(data)
 
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_from_home(id):
     game = Game.query.get(id)
+    all_comments = Comment.query.filter(Comment.game_id==game.id).all()
+    for a in all_comments:
+        db.session.delete(a)
+        db.session.commit()
     all_game = Category_Game.query.all()
-    for a in all_game:
-        if a.category_id:
-            db.session.delete(a)
-            db.session.commit()
+    category_game = Category_Game.query.filter(Category_Game.game_id==game.id).first()
+    db.session.delete(category_game)
+    db.session.commit()
     db.session.delete(game)
     db.session.commit()
     return redirect('/game-home')
@@ -207,7 +207,7 @@ def delete_cat_from_home(id):
     return redirect('/game-home')
 
 @app.route('/category/game/<int:id>', methods=["POST"])
-def custome_cat(id):
+def custom_cat(id):
     category_id = request.form['addCat']
     try:
         q = Category_Game.query.filter(Category_Game.category_id==category_id, Category_Game.game_id==id)
@@ -225,14 +225,14 @@ def custome_cat(id):
 
 @app.route('/category/<int:id>')
 def cat_list(id):
-    
+    cat = Category.query.get(id)
     cat_game = Category_Game.query.filter_by(category_id=id).all()
     games = [c.game_id for c in cat_game]
     info = []
     for c in games:
         game_data = Game.query.get_or_404(c)
         info.append(game_data)
-    return render_template('cat_games.html', games=games, info=info)
+    return render_template('cat_games.html', games=games, info=info,cat=cat)
 
 
 

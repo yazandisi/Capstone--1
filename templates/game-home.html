@@ -1,111 +1,113 @@
 {% extends 'base.html' %} {% block title %}Sign Up{% endblock %} {% block
 content %}
 <div class="container">
-{% for msg in get_flashed_messages()%}
-<p class="alert alert-info">{{msg}}</p>
-{% endfor %}
-<form action="/logout" method="POST">
-  <button type="submit" class="">logout</button>
-</form>
-
-<h1 class="welcom_home">Welcome</h1>
-<p>Search for a game</p>
-<div class="img_container"></div>
-<form method="POST">
-  {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
-  'hidden' %}
-
-  <p>
-    {{field.label}} {{field(class_="form-control")}} {% for error in
-    field.errors %}
-    <span class="form-text text-danger">{{error}}</span>
-    {% endfor %}
-  </p>
+  {% for msg in get_flashed_messages()%}
+  <p class="flash">{{msg}}</p>
   {% endfor %}
-
-  <button type="submit">Submit</button>
-</form>
-
-
-<div class="container category">
-  <div class="container_one">
-  <h2>Your Games</h2>
-  <table class="table table-striped ">
-     <thead class="table-dark">
-        <th>Game Name</th>
-        <th>Add to category</th>
-        <th>Remove game</th>
-        </thead class="table-dark" >
-     <tbody>
-        {% for game in games %}
-        {% if session['user_id'] ==  game.user_id %}
-        <tr>
-           <td><a href="/game_info/{{game.id}}">{{game.title}}</a></td>
-           <td>
-            {% for cat in category %}
-            <form action="/category/game/{{game.id}}" method="POST">
-              {% endfor %} 
-               <label for="addCat">Add to Category</label>
-               <select name="addCat" id="addCat">
-                 <option value="">Select your option</option>
-                  {% for cat in category %}
-                  <option value="{{cat.id}}">{{cat.name}}</option>
-                  {% endfor %} 
-               </select>
-               <input type="submit" value="submit">
-            </form>
-         </td>
-           <td> <form action="/delete/{{game.id}}" method="POST">
-            <button type="submit" class="btn btn-link">Delete</button>
-          </form></td>
-        </tr>
-        {% endif %}
-        {% endfor %} 
-     </tbody>
-  </table>
-</div>
-<div class="container_two">
-  <h2>Your Custome categories</h2>
-  <table class="table table-striped ">
-     <thead class="table-dark">
-        <th>Category Name</th>
-        <th>Description</th>
-        <th>Add / Remove category</th>
-        </thead class="table-dark" >
-     <tbody>
-
-        <tr>
-             <form method="POST">
-            {{ cat_form.hidden_tag() }} {% for field in cat_form if field.widget.input_type !=
-            'hidden'%}
-            <td>
-              {{field.label(class_="form-label")}} {{field(class_="form-control")}} {%
-              for err in field.errors %} {{err}} {% endfor %}
+  <form action="/logout" method="POST">
+    <button type="submit" class="home_logout">logout</button>
+  </form>
+  <div class="home_game_head">
+    <h1 class="welcom_home">Welcome</h1>
+    <p>Search for a game</p>
+    <div class="img_container"></div>
+    <form method="POST">
+      {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+      'hidden' %}
+      <p>
+        {{field.label}} {{field(class_="form-control")}} {% for error in
+        field.errors %}
+        <span class="form-text text-danger">{{error}}</span>
+        {% endfor %}
+      </p>
+      {% endfor %}
+      <button class="sub_home_and_result" type="submit">Submit</button>
+    </form>
+  </div>
+  <div class="container category">
+    <button type="button" class="collapsible">Open / Close Games</button>
+    <div class="content">
+      <div class="container_table">
+        <table class="table table-striped game_table">
+          <thead class="table-dark">
+            <th>Game Name</th>
+            <th>Add to category</th>
+            <th>Remove game</th>
+          </thead>
+          <tbody>
+            {% for game in games %} {% if session['user_id'] == game.user_id %}
+            <tr>
+              <td><a href="/game_info/{{game.id}}">{{game.title}}</a></td>
+              <td>
+                {% for cat in category %}
+                <form action="/category/game/{{game.id}}" method="POST">
+                  {% endfor %}
+                  <label for="addCat">Add to Category</label>
+                  <select name="addCat" id="addCat">
+                    <option value="">Select your option</option>
+                    {% for cat in category %}
+                    <option value="{{cat.id}}">{{cat.name}}</option>
+                    {% endfor %}
+                  </select>
+                  <input type="submit" value="submit" />
+                </form>
               </td>
-            {% endfor %}
-            <td> <button>Submit</button></td>
-          </form>
-        </tr>
-        {% for categories in category %}
-        <tr class="cat_data">
-          <td><a class="home_cat" href="/category/{{categories.id}}">{{categories.name}}</a></td>
-          <td>{{categories.description}}</td>
-          <td> <form action="/delete/category/{{categories.id}}" method="POST">
-            <button type="submit" class="btn btn-link">Delete</button>
-          </form></td>
-          {% endfor %}
-          </tr>
-
-     </tbody>
-  </table>
+              <td>
+                <form action="/delete/{{game.id}}" method="POST">
+                  <button type="submit" class="btn btn-link">Delete</button>
+                </form>
+              </td>
+            </tr>
+            {% endif %} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button type="button" class="collapsible btn_cat">
+      Open / Close Catagories
+    </button>
+    <div class="content">
+      <div class="container_table">
+        <table class="table table-striped cat_table">
+          <thead class="table-dark">
+            <th>Category Name</th>
+            <th>Description</th>
+            <th>Add / Remove category</th>
+          </thead>
+          <tbody>
+            <tr>
+              <form method="POST">
+                {{ cat_form.hidden_tag() }} {% for field in cat_form if
+                field.widget.input_type != 'hidden'%}
+                <td>
+                  {{field.label(class_="form-label")}}
+                  {{field(class_="form-control")}} {% for err in field.errors %}
+                  {{err}} {% endfor %}
+                </td>
+                {% endfor %}
+                <td><button>Submit</button></td>
+              </form>
+            </tr>
+            {% for categories in category %}
+            <tr class="cat_data">
+              <td>
+                <a class="home_cat" href="/category/{{categories.id}}"
+                  >{{categories.name}}</a
+                >
+              </td>
+              <td>{{categories.description}}</td>
+              <td>
+                <form action="/delete/category/{{categories.id}}" method="POST">
+                  <button type="submit" class="btn btn-link">Delete</button>
+                </form>
+              </td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-</div>
-
-
-
-</div>
-
-
-
+<script src="/static/game-home.js"></script>
 {% endblock %}

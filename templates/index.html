@@ -4,13 +4,17 @@
   {% for msg in get_flashed_messages()%} {% if msg != 'Logout successful!'%}
   <p class="alert alert-danger">{{msg}}</p>
   {% else %}
-  <p class="alert alert-info">{{msg}}</p>
+  <p class="flash">{{msg}}</p>
   {% endif %} {% endfor %}
   <nav class="index_nav">
-    <ul>
+    <ul class="index_ul">
       <li><h1>Video Game Extract</h1></li>
-      <li><a href="/login">login</a></li>
-      <li><a href="/register">signup</a></li>
+      <li>
+        <a href="/login"><p>login</p> </a>
+      </li>
+      <li>
+        <a href="/register"><p>signup</p></a>
+      </li>
     </ul>
   </nav>
 </div>
