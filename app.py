@@ -1,4 +1,3 @@
-from unicodedata import category
 from s import key, c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
 # request
