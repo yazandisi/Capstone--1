@@ -1,18 +1,24 @@
 allForms = document.querySelectorAll(".form");
 let storePics = [];
 async function getFavData(val, title, id, len) {
-  const res = await axios.post("http://127.0.0.1:5000/get_fav", {
-    fav_input: val,
-    fav_name: title,
-    api_Id: id,
-  });
+  const res = await axios.post(
+    "https://video-game-extract.herokuapp.com/get_fav",
+    {
+      fav_input: val,
+      fav_name: title,
+      api_Id: id,
+    }
+  );
   return res.data;
 }
 async function deleteFavData(val, title) {
-  const res = await axios.post("http://127.0.0.1:5000/delete_fav", {
-    fav_input: val,
-    fav_name: title,
-  });
+  const res = await axios.post(
+    "https://video-game-extract.herokuapp.com/delete_fav",
+    {
+      fav_input: val,
+      fav_name: title,
+    }
+  );
   return res.data;
 }
 
