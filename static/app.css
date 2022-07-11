@@ -4,87 +4,32 @@ body {
   background-image: -moz-linear-gradient(255, 0, 0);
 }
 .wrapper {
-  /* animation: scroll 70s linear infinite; */
   background: url("https://media3.giphy.com/media/uFmH8za4E6M5STIiTu/giphy.gif?cid=ecf05e47ugnef17y824c0zpnnsqt2hjghp5ne45sdab56auc&rid=giphy.gif&ct=g"),
     #edecec;
-  /* justify-content: center; */
   align-items: center;
   perspective: 1000px;
   background-size: 115%;
-
   color: #edecec;
 }
-/* @keyframes scroll {
-  100% {
-    background-position: 0px -2000px;
-  }
-} */
-/* .info_body {
-  background-color: black;
-} */
-.info_body {
-  background-color: black;
+.game_res {
+  margin-top: 2%;
 }
-.js_img {
-  position: relative;
-  float: right;
-  margin-top: -5%;
-  margin-bottom: 1%;
-  width: 15em;
-  height: 10em;
-  z-index: -1;
-  border: inset red;
-  border-radius: 50%;
-}
-iframe {
-  position: static;
-  float: left;
-  margin-right: 30%;
-  top: 100%;
-}
-.notes textarea {
-  margin-right: 70%;
-  color: black;
-  width: 100%;
-  border: solid #e84d4d;
-}
-.notes button {
-  display: block;
-  color: black;
-}
-.indi_notes {
-  list-style-type: none;
-}
-.tweet {
-  position: absolute;
-  top: 63%;
-  left: 80%;
-  float: right;
-
-  z-index: 1;
-}
-/* .api_img img {
-  text-align: center;
-  z-index: -1;
-  float: left;
-} */
-
-.label_text_box {
-  position: absolute;
-  top: -20%;
-}
-/* .sub_comment {
-  position: absolute;
-  top: 100%;
-  left: 0%;
-} */
-
 .game_res li {
   list-style-type: none;
   text-align: center;
   background-color: black;
   width: 50%;
   margin-left: 24%;
+  border: inset;
+}
+.fav_h4 {
+  text-align: left;
+}
+.fav_in_res {
+  border: solid;
+
+  float: left;
+  margin-right: 2%;
 }
 .game_res input {
   display: block;
@@ -142,7 +87,7 @@ iframe {
   text-align: center;
   margin-top: 15%;
   background-color: #000000;
-  opacity: 80%;
+  opacity: 90%;
 }
 .log_form {
   text-align: center;
@@ -180,7 +125,7 @@ iframe {
 .home_game_head {
   border: inset thick white;
   text-align: center;
-  margin: 5% 30% 10% 30%;
+  margin: 5% 30% 5% 30%;
   background-color: #000000;
 }
 .collapsible {
@@ -203,7 +148,7 @@ iframe {
   color: white;
   background-color: black;
   border: inset;
-  margin-top: 2%;
+  margin-top: 3%;
 }
 .home_logout:hover {
   color: black;
@@ -228,30 +173,6 @@ iframe {
   list-style-type: none;
 }
 
-.head_game_info {
-  border: inset thick white;
-  text-align: center;
-  margin-top: 0%;
-  background-color: #000000;
-  color: white;
-  z-index: 1;
-}
-
-.game_info_img {
-  text-align: center;
-  display: inline;
-}
-.quick_link_and_imgs a {
-  width: 30%;
-  color: whitesmoke;
-  list-style-type: none;
-}
-
-.quick_link_and_imgs li {
-  color: whitesmoke;
-  list-style-type: none;
-}
-
 .logout_info {
   margin-top: 3%;
   color: black;
@@ -259,14 +180,7 @@ iframe {
 .home_button_info {
   color: black;
 }
-.favorite_game_res {
-  width: 30%;
-  width: fit-content;
-  margin-left: 0%;
-}
-/* .summary {
-  margin: auto;
-} */
+
 .a_res {
   font-size: 30px;
   color: gold;
@@ -280,9 +194,11 @@ iframe {
   text-align: center;
   margin-top: 1%;
   margin-bottom: 1%;
-
+  background-color: #000000;
   width: 25%;
   margin-left: 37%;
+  border: inset;
+  margin-top: 2%;
 }
 .form_head button {
   color: black;
@@ -293,4 +209,189 @@ iframe {
   color: black;
   margin-bottom: 1%;
   border: inset thick white;
+}
+.res_title {
+  position: static;
+  text-align: center;
+  background-color: #000000;
+  opacity: 70%;
+
+  border: solid;
+  top: -1%;
+  left: 32%;
+}
+.res_logout {
+  margin-top: 1%;
+  position: static;
+}
+.res_home {
+  top: -0.5%;
+  position: static;
+  display: inline;
+}
+
+.flash_game_info {
+  color: green;
+  background-color: #000000;
+  margin-top: 2%;
+}
+.del_com_flash {
+  color: red;
+  background-color: #000000;
+  margin-top: 2%;
+}
+
+.nav_bar {
+  border: solid;
+  text-align: center;
+
+  width: 100%;
+  font-size: 15px;
+  margin-bottom: -2%;
+}
+.nav_bar div {
+  position: static;
+  background-color: #000000;
+  width: 100%;
+}
+.nav_bar span {
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 100%;
+
+  float: inline-end;
+}
+.nav_bar span a {
+  color: black;
+  width: auto;
+  font-size: 20px;
+  color: white;
+}
+.nav_bar span button {
+  color: black;
+  width: auto;
+  font-size: 20px;
+  color: white;
+}
+.nav_bar span form {
+  color: black;
+  width: auto;
+  margin-bottom: 5px;
+}
+
+.info_body {
+  border: solid;
+  background-color: #000000;
+}
+.js_img {
+  display: inline;
+  width: 12%;
+  height: 10%;
+  border-radius: 70%;
+  margin-top: 1%;
+  border: inset thin white;
+}
+.game_info_img {
+  border: solid;
+  text-align: center;
+  background-color: #000000;
+}
+.name {
+  text-align: center;
+  z-index: 1;
+}
+.h1_in_name {
+  background-color: #000000;
+  text-align: center;
+  margin-top: 1%;
+  color: white;
+}
+.game_info_img {
+  margin-bottom: -1%;
+}
+.video_and_twitch {
+  margin-left: 25%;
+
+  width: auto;
+  height: auto;
+}
+.vid h3 {
+  background-color: black;
+  text-align: center;
+  margin-top: 5%;
+  color: wheat;
+}
+.frame {
+  margin-left: 25%;
+}
+
+.div_youtube_title h3 {
+  background-color: black;
+  text-align: center;
+  margin-top: 5%;
+  color: wheat;
+}
+.notes_parent {
+  border: solid white;
+
+  color: white;
+  float: left;
+  margin-left: 26%;
+  margin-top: 3%;
+  width: 20%;
+}
+.notes_parent textarea {
+  float: left;
+  margin-top: 4%;
+  margin-right: 20%;
+  width: 100%;
+  color: black;
+}
+.notes_parent h4 {
+  float: left;
+  width: 100%;
+}
+.notes_parent li {
+  list-style-type: none;
+}
+
+.tweet {
+  width: 25%;
+  margin-left: 53%;
+  margin-top: 3%;
+}
+.add_com {
+  color: green;
+  background-color: green;
+  width: 100%;
+  margin-top: 2%;
+  border: inset;
+  color: black;
+}
+.wrap_list p {
+  color: white;
+  display: inline;
+
+  margin-top: 100%;
+  word-wrap: break-word;
+  width: 100%;
+}
+.del_comm {
+  background-color: red;
+
+  font-size: 10px;
+
+  display: inline;
+}
+.com_border {
+  border: solid white;
+}
+.li_cat {
+  text-align: center;
+  margin-bottom: 2%;
+}
+.a_list {
+  position: relative;
+  margin-left: 5%;
+  top: 3vw;
 }

@@ -2,7 +2,6 @@ import bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
-
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
@@ -35,10 +34,6 @@ class Game(db.Model):
                     autoincrement=True)
     
     title = db.Column(db.Text, nullable=False)
-    genre = db.Column(db.Text, nullable=False)
-    company = db.Column(db.Text, nullable=False)
-    summary = db.Column(db.Text, nullable=False)
-    url = db.Column(db.Text, nullable=False)
     favorite = db.Column(db.Boolean)
     api_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -58,6 +53,7 @@ class Category(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 class Comment(db.Model):
+    """Model for Comments"""
     __tablename__ = 'comments'
     id = db.Column(db.Integer,
             primary_key=True,
@@ -67,6 +63,7 @@ class Comment(db.Model):
     game_id = db.Column(db.Integer, db.ForeignKey('games.id'))
 
 class User(db.Model):
+    """Model for users"""
     __tablename__ = 'users'
 
     id = db.Column(db.Integer,

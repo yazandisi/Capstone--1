@@ -10,12 +10,6 @@ class AddGameForm(FlaskForm):
 
     title = StringField("Game Name", validators=[
                        InputRequired(message="Game name can't be blank")])
-    
-
-    # company = StringField("Company", validators=[
-    #             InputRequired(message="Company can't be blank")])
-
-
 class AddCategoryForm(FlaskForm):
 
     name = StringField("Category Name", validators=[

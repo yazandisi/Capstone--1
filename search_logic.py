@@ -1,5 +1,6 @@
 import requests
 def search_logic(form,data,c_id,a_id ):
+    """Uses IGDB API to get JSON with game details using string"""
     data.clear()
     title = form.title.data
     url = "https://api.igdb.com/v4/games"
@@ -16,6 +17,7 @@ def search_logic(form,data,c_id,a_id ):
     return info
 
 def search_by_id_logic(id,data,c_id,a_id ):
+    """Uses IGDB API to return JSON using ID"""
     data.clear()
     id = id
     url = "https://api.igdb.com/v4/games"
@@ -32,6 +34,7 @@ def search_by_id_logic(id,data,c_id,a_id ):
     return info
 
 def search_for_vid(id,data,c_id,a_id):
+    """Uses IDGB API to get gameplay/trailer video"""
     data.clear()
     url = "https://api.igdb.com/v4/game_videos"
 
@@ -46,23 +49,20 @@ def search_for_vid(id,data,c_id,a_id):
     
     return info
 
-def get_live_video(game_name):
+def get_live_video(game_name,c_id,a_id):
+    """Uses twitch API to get streamer indo"""
     url = f"https://api.twitch.tv/helix/search/channels?query={game_name}&live_only=true"
     payload = ""
     headers = {
-        'Client-ID': 'o5ny07nd7uy2wol6w70f8bo17qhv1a',
-        'Authorization': 'Bearer nwylltbgpyzj0hb8xohtrl6y5x7he1'
+        'Client-ID': c_id,
+        'Authorization': a_id,
     }
     response = requests.request("GET", url, headers=headers, data=payload)
     info = response.json()
-    check_live = [g['is_live'] for g in info['data']]
-    
-    print([g['is_live'] for g in info['data']])
-    print('***************asdadasdasdafsfsef')
- 
-    # ['is_live']
+
     try:
-        dis_name = info['data'][0]['display_name']
+        check_live = [g['is_live'] for g in info['data']].index(True)
+        dis_name = info['data'][check_live]['display_name']
     except:
         dis_name = "yazandisi"
     

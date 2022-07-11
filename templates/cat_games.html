@@ -1,14 +1,17 @@
 {% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
 %}
+<nav><a href="/game-home" class="a_list">Home</a></nav>
 <div class="head">
   <h1>The {{cat.name}} Game List</h1>
   <ul>
     {% for i in info %}
-    <li>
+    <li class="li_cat">
       <a href="/game_info/{{i.id}}"><h5>{{i.title}}</h5></a>
+      <form action="/delete/category/{{cat.id}}/{{i.id}}">
+        <button type="submit">Delete</button>
+      </form>
     </li>
     {% endfor %}
   </ul>
-  <a href="/game-home">Go Back</a>
 </div>
 {% endblock %}

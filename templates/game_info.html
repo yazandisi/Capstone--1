@@ -22,57 +22,94 @@
     <link rel="stylesheet" href="/static/app.css" />
     <title>Game Info Page</title>
   </head>
-  <header>
-    {% for msg in get_flashed_messages()%}
-    <p class="alert alert-info">{{msg}}</p>
-    {% endfor %}
+  <nav class="nav_bar">
+    {% for msg in get_flashed_messages()%} {% if msg == 'Note Added'%}
+    <p class="flash_game_info">{{msg}}</p>
+    {% else %}
+    <p class="del_com_flash">{{msg}}</p>
+    {% endif %} {% endfor %}
 
     <div class="quick_link_and_imgs">
-      <ul>
-        <li>
-          <form action="/logout" method="POST">
-            <button type="submit" class="logout_info">logout</button>
-          </form>
-        </li>
-        <li>
-          <a class="" href="/game-home"
-            ><button class="home_button_info">Home</button></a
-          >
-        </li>
-        <li>
-          <a
-            class="fan_link"
-            href="https://gamefaqs.gamespot.com/search?game={{game.title}}"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Game Guide Search
-          </a>
-        </li>
-        <li>
-          <a
-            class="fan_link"
-            href="https://www.fandom.com/?s={{game.title}}"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Fandom Quick Search
-          </a>
-        </li>
-      </ul>
+      <span>
+        <form action="/logout" method="POST" class="btn btn-link">
+          <button type="submit" class="btn btn-link">logout</button>
+        </form>
+      </span>
+      <span>
+        <a class="" href="/game-home"
+          ><button class="btn btn-link">Home</button></a
+        >
+      </span>
+      <span>
+        <a
+          class="btn btn-link"
+          href="https://gamefaqs.gamespot.com/search?game={{game.title}}"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Game Guide Search
+        </a>
+      </span>
+      <span>
+        <a
+          class="btn btn-link"
+          href="https://www.fandom.com/?s={{game.title}}"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Fandom Quick Search
+        </a>
+      </span>
     </div>
-  </header>
+  </nav>
 
   <body class="info_body">
-    <div class="game_info_img">
-      {% for i in img %}
-      <img src="{{i.url}}" alt="" />
-      {% endfor %}
+    <div class="name">
+      <h1 class="h1_in_name">
+        {{game.title}}
+        <div class="game_info_img">
+          {% for i in img %}
+          <img src="{{i.url}}" alt="" />
+          {% endfor %}
+        </div>
+      </h1>
+    </div>
+    <div class="vid">
+      <h3>Twitch TV</h3>
     </div>
 
-    <div class="head_game_info">
-      <h1 class="name">{{game.title}}</h1>
+    <div class="video_and_twitch">
+      <div class="hold">
+        <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+        <div id="DivID"></div>
+        <script type="text/javascript">
+          var options = {
+            width: 754,
+            height: 380,
+            channel: "{{live_video}}",
+          };
+          var player = new Twitch.Player("DivID", options);
+          player.setVolume(0.5);
+        </script>
+      </div>
+    </div>
+    <div class="div_youtube_title">
+      <h3 class="">Youtube Trailer / Gameplay</h3>
+    </div>
+    <iframe
+      width="754"
+      height="380"
+      src="https://www.youtube.com/embed/{{vid_data[0]['video_id']}}"
+      allowfullscreens
+      class="frame"
+    >
+    </iframe>
+    <div class="notes_parent">
       <div class="notes">
         <h4>Personal Notes</h4>
-        <form action="/game_info/comment/{{game.id}}" method="POST">
+        <form
+          action="/game_info/comment/{{game.id}}"
+          method="POST"
+          id="list_form"
+        >
           <label class="label_text_box" for="comments"></label>
           <textarea
             class="textarea"
@@ -80,66 +117,40 @@
             id="comments"
             placeholder="Type here"
             rows="8"
+            cols="35"
+            maxlength="50"
           ></textarea>
-          <button type="submit" value="submit">Submit</button>
+          <button class="add_com" type="submit" value="submit">Submit</button>
         </form>
-
-        <ul>
+        <div class="wrap_list" id="list_div">
           {% for c in comment %}
-          <li class="indi_notes">
+          <div class="com_border">
+            <br />
             <p>{{c.comment}}</p>
-            {% endfor %}
-          </li>
-        </ul>
+            <form
+              action="/delete/comment/{{c.id}}/game/{{game.id}}"
+              method="POST"
+            >
+              <button class="del_comm" type="submit">Delete</button>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
-    <iframe
-      width="470"
-      height="415"
-      src="https://www.youtube.com/embed/{{vid_data[0]['video_id']}}"
-      allowfullscreens
-      class="frame"
-    >
-    </iframe>
-    <div class="hold">
-      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-      <div id="DivID"></div>
-      <script type="text/javascript">
-        var options = {
-          width: 854,
-          height: 480,
-          channel: "{{live_video}}",
-          video: "Assassins",
-        };
-        var player = new Twitch.Player("DivID", options);
-        player.setVolume(0.5);
-      </script>
-    </div>
+
     <div class="tweet">
       <a
         class="twitter-timeline"
-        href="https://twitter.com/GameSpot?ref_src=twsrc%5Etfw"
-        >Tweets by GameSpot</a
+        href="https://twitter.com/Twitch?ref_src=twsrc%5Etfw"
+        >Tweets by Twitch</a
       >
       <script
         async
         src="https://platform.twitter.com/widgets.js"
         charset="utf-8"
       ></script>
-      <script
-        async
-        src="https://platform.twitter.com/widgets.js"
-        charset="utf-8"
-      ></script>
     </div>
-    <!-- <iframe
-      src="https://player.twitch.tv/?channel=dallas&parent=https//:127.0.0.1//localhost&muted=true"
-      height="720"
-      width="1280"
-      allowfullscreen
-    >
-    </iframe> -->
-
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
     <script src="/static/gameInfo.js"></script>
