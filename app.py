@@ -6,13 +6,14 @@ req_session = requests.session
 from models import db, connect_db, Category_Game, Category, Game, User, Comment
 from forms import UserForm, AddGameForm, AddCategoryForm
 from search_logic import search_logic, search_by_id_logic, search_for_vid, get_live_video
+import os
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///video_game_app'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SECRET_KEY'] = 'Yazan'
+app.config['SECRET_KEY'] = os.environ.get('SECERT_KEY', 'hellosecret1')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
