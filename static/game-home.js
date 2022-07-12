@@ -3,7 +3,7 @@ delForm.addEventListener("click", handleClickLoad);
 
 document.addEventListener("DOMContentLoaded", function (event) {
   delForm.removeEventListener(
-    "click",
+    "load",
     setTimeout(() => {
       handleClickLoad;
     }, 5000)
