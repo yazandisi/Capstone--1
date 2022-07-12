@@ -32,4 +32,5 @@ function handleClickLoad(event) {
   event.preventDefault();
 
   console.log(event.target);
+  event.target.classList.add("submitClass");
 }
