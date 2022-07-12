@@ -100,7 +100,9 @@ content %}
               <td>{{categories.description}}</td>
               <td>
                 <form action="/delete/category/{{categories.id}}" method="POST">
-                  <button type="submit" class="btn btn-link">Delete</button>
+                  <button type="submit" class="btn btn-link home_del_form">
+                    Delete
+                  </button>
                 </form>
               </td>
               {% endfor %}
