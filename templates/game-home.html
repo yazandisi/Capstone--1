@@ -53,7 +53,11 @@ content %}
                 </form>
               </td>
               <td>
-                <form action="/delete/{{game.id}}" method="POST">
+                <form
+                  action="/delete/{{game.id}}"
+                  method="POST"
+                  class="home_del_form"
+                >
                   <button type="submit" class="btn btn-link submitClass">
                     Delete
                   </button>
