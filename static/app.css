@@ -398,3 +398,6 @@ body {
 .home_del_form {
   /* display: none; */
 }
+.submitClass {
+  display: none;
+}
