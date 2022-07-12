@@ -29,8 +29,6 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 function handleClickLoad(event) {
-  event.preventDefault();
-
   console.log(event.target);
   event.target.classList.add("submitClass");
 }
