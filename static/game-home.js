@@ -1,3 +1,10 @@
+delForm = document.getElementById("home_del_form");
+delForm.addEventListener("click", handleClickLoad);
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  delForm.removeEventListener("click", handleClickLoad);
+});
+
 window.addEventListener("pageshow", function (event) {
   var historyTraversal =
     event.persisted ||
@@ -21,4 +28,7 @@ for (i = 0; i < coll.length; i++) {
       content.style.display = "none";
     }
   });
+}
+function handleClickLoad(event) {
+  event.preventDefault();
 }
