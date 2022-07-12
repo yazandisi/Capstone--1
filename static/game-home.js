@@ -1,9 +1,22 @@
 let delForm = document.querySelectorAll(".home_del_form");
+let submitButton = document.getElementById("submitClass");
+// delForm.array.forEach((element) => {
+//   element.addEventListener("click", handleClickLoad);
+// });
 document.addEventListener("DOMContentLoaded", function (event) {
+  //the event occurred
   for (let btn of delForm) {
-    setTimeout(() => {
-      btn.setAttribute("class", "");
-    }, "1000");
+    btn.addEventListener(
+      "submit",
+      function () {
+        // Disable the submit button
+        submitButton.setAttribute("disabled", "disabled");
+
+        // Change the "Submit" text
+        submitButton.value = "Please wait...";
+      },
+      false
+    );
   }
 });
 window.addEventListener("pageshow", function (event) {
