@@ -1,15 +1,14 @@
-delForm = document.getElementById("home_del_form");
-delForm.addEventListener("click", handleClickLoad);
+let delForm = document.querySelectorAll(".home_del_form");
 
+// delForm.array.forEach((element) => {
+//   element.addEventListener("click", handleClickLoad);
+// });
 document.addEventListener("DOMContentLoaded", function (event) {
-  delForm.removeEventListener(
-    "load",
-    setTimeout(() => {
-      handleClickLoad;
-    }, 5000)
-  );
+  //the event occurred
+  for (let btn of delForm) {
+    btn.setAttribute("class", "");
+  }
 });
-
 window.addEventListener("pageshow", function (event) {
   var historyTraversal =
     event.persisted ||
@@ -36,4 +35,5 @@ for (i = 0; i < coll.length; i++) {
 }
 function handleClickLoad(event) {
   event.preventDefault();
+  console.log("DOM NOT loaded");
 }
