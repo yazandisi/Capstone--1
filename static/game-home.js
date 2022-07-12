@@ -1,7 +1,7 @@
 let delForm = document.getElementsByClassName("home_del_form");
 
 for (let btn of delForm) {
-  btn.addEventListener("click", handleClickLoad);
+  btn.children.addEventListener("click", handleClickLoad);
 }
 
 window.addEventListener("pageshow", function (event) {
