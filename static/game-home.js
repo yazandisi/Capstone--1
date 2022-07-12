@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   for (let btn of delForm) {
     setTimeout(() => {
       btn.setAttribute("class", "");
-    }, "5000");
+    }, "1000");
   }
 });
 window.addEventListener("pageshow", function (event) {
