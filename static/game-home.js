@@ -1,12 +1,7 @@
 let delForm = document.querySelectorAll(".home_del_form");
-
-// delForm.array.forEach((element) => {
-//   element.addEventListener("click", handleClickLoad);
-// });
 document.addEventListener("DOMContentLoaded", function (event) {
-  //the event occurred
   for (let btn of delForm) {
-    btn.setAttribute("class", "");
+    setTimeout(btn.setAttribute("class", ""), 5000);
   }
 });
 window.addEventListener("pageshow", function (event) {
