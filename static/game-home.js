@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       "submit",
       function () {
         // Disable the submit button
-        submitButton.setAttribute("disabled", "disabled");
-
+        submitButton.disabled = true;
         // Change the "Submit" text
         submitButton.value = "Please wait...";
       },
