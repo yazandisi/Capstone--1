@@ -396,5 +396,5 @@ body {
   top: 3vw;
 }
 .home_del_form {
-  display: none;
+  /* display: none; */
 }
