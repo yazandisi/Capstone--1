@@ -1,24 +1,14 @@
 let delForm = document.querySelectorAll(".home_del_form");
-let submitButton = document.querySelectorAll(".submitClass");
 
-for (let btn of delForm) {
-  btn.addEventListener(
-    "submit",
-    function () {
-      // Disable the submit button
-      submitButton.disabled = true;
-      // Change the "Submit" text
-      submitButton.value = "Please wait...";
-    },
-    false
-  );
-}
 // delForm.array.forEach((element) => {
 //   element.addEventListener("click", handleClickLoad);
 // });
-// document.addEventListener("DOMContentLoaded", function (event) {
-//   //the event occurred
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  //the event occurred
+  for (let btn of delForm) {
+    btn.setAttribute("class", "home_del_form");
+  }
+});
 window.addEventListener("pageshow", function (event) {
   var historyTraversal =
     event.persisted ||
