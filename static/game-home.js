@@ -2,7 +2,12 @@ delForm = document.getElementById("home_del_form");
 delForm.addEventListener("click", handleClickLoad);
 
 document.addEventListener("DOMContentLoaded", function (event) {
-  delForm.removeEventListener("click", handleClickLoad);
+  delForm.removeEventListener(
+    "click",
+    setTimeout(() => {
+      handleClickLoad;
+    }, 5000)
+  );
 });
 
 window.addEventListener("pageshow", function (event) {
