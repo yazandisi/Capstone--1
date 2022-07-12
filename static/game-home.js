@@ -1,7 +1,7 @@
 let delForm = document.querySelectorAll(".home_del_form");
 document.addEventListener("DOMContentLoaded", function (event) {
   for (let btn of delForm) {
-    setTimeout(btn.setAttribute("class", ""), 50000);
+    setTimeout(btn.setAttribute("class", ""), 500000);
   }
 });
 window.addEventListener("pageshow", function (event) {
