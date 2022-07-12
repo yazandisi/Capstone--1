@@ -30,5 +30,6 @@ for (i = 0; i < coll.length; i++) {
 }
 function handleClickLoad(event) {
   event.preventDefault();
+  event.display = "noen";
   console.log("Clicked");
 }
