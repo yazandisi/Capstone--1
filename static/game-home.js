@@ -1,5 +1,5 @@
 let delForm = document.querySelectorAll(".home_del_form");
-let submitButton = document.getElementById("submitClass");
+let submitButton = document.querySelectorAll(".submitClass");
 // delForm.array.forEach((element) => {
 //   element.addEventListener("click", handleClickLoad);
 // });
