@@ -13,7 +13,7 @@ def search_logic(form,data,c_id,a_id ):
     }
     response = requests.request("POST", url, headers=headers, data=payload)
     info = response.json()
-    
+    print(info)
     return info
 
 def search_by_id_logic(id,data,c_id,a_id ):
