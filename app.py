@@ -1,5 +1,6 @@
 from s import c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
+import time
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
 req_session = requests.session
@@ -51,8 +52,14 @@ def game_home():
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
         data.append(search_logic(form,data,c_id,a_id))
-        if data[0]:
-            return redirect('/game_result')
+        print(data)
+        while True:
+            time.sleep(5)
+            try:   
+                return redirect('/game_result')
+            except:
+                return redirect('/game_result')
+
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
