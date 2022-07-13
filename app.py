@@ -51,7 +51,8 @@ def game_home():
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
         data.append(search_logic(form,data,c_id,a_id))
-        return redirect('/game_result')
+        if data[0]:
+            return redirect('/game_result')
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
