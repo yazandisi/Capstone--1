@@ -53,6 +53,8 @@ def game_home():
     if form.validate_on_submit():
         data.clear()
         data.append(search_logic(form,data,c_id,a_id))
+        data.clear()
+        data.append(search_logic(form,data,c_id,a_id))
         print(data)
         while True:
             time.sleep(2)
