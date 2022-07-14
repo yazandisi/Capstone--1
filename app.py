@@ -38,8 +38,9 @@ def game_result():
     form = AddGameForm()
     if form.validate_on_submit():
         data.append(search_logic(form,data,c_id,a_id ))
+        print(data)
         return redirect('/game_result')
-    return render_template('game_result.html', info=data, size=size, form=form, game=game)
+    return render_template('game_result.html', info=data, size=size, form=form, game=game, ts=ts)
 
 @app.route('/game-home',methods=["GET","POST"])
 def game_home():

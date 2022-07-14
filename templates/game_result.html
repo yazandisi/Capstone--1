@@ -27,7 +27,7 @@
     <p class="alert alert-info">{{msg}}</p>
     {% endfor %} {% for id in info %} {% for n in info %} {% for u in n %}
     <div class="game_res" id="{{u.id}}">
-      <ul class="ul_summary" id="{{ts}}">
+      <ul class="ul_summary">
         <li>
           <h4 class="fav_h4">Favorite</h4>
           <h3 class="title">
@@ -81,7 +81,7 @@
   
     {% endfor %} {% endfor %} {% endfor %}
   </div>
-  
+  <h1>yes{{ts}}</h1>
   <script src="https://unpkg.com/axios/dist/axios.js"></script>
   <script src="/static/app.js"></script>
   {% endblock %}

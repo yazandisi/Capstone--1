@@ -1,4 +1,5 @@
 import requests
+import datetime
 def search_logic(form,data,c_id,a_id ):
     """Uses IGDB API to get JSON with game details using string"""
     data.clear()
@@ -14,6 +15,8 @@ def search_logic(form,data,c_id,a_id ):
     response = requests.request("POST", url, headers=headers, data=payload)
     info = response.json()
     print(info)
+    print('**********PRINT TIME****************')
+    print(datetime.datetime.now().timestamp())
     return info
 
 def search_by_id_logic(id,data,c_id,a_id ):
