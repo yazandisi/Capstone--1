@@ -57,7 +57,7 @@ def game_home():
         print('************DATA AFTER APPEND******************')
         print(data)
         print('************DATA AFTER APPEND******************')
-        return redirect('/game_result')
+        return redirect('/game_result', code=307)
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
