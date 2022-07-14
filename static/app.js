@@ -6,7 +6,7 @@
 //   });
 // });
 // window.location.reload();
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("load", (event) => {
   console.log("DOM fully loaded and parsed");
 });
 allForms = document.querySelectorAll(".form");
