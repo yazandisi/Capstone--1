@@ -37,6 +37,7 @@ def game_result():
     size = len(data)
     form = AddGameForm()
     if form.validate_on_submit():
+        data.clear()
         data.append(search_logic(form,data,c_id,a_id ))
         print(data)
         return redirect('/game_result')
@@ -52,6 +53,7 @@ def game_home():
         return redirect('/')
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
+    data.clear()
     if form.validate_on_submit():
         print('************DATA BEFORE APPEND******************')
         print(data)
