@@ -1,9 +1,7 @@
 from s import c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
-import time
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
-
 req_session = requests.session
 from models import db, connect_db, Category_Game, Category, Game, User, Comment
 from forms import UserForm, AddGameForm, AddCategoryForm

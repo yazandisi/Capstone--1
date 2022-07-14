@@ -1,5 +1,4 @@
 import requests
-from grequests import AsyncRequest
 def search_logic(form,data,c_id,a_id ):
     """Uses IGDB API to get JSON with game details using string"""
     data.clear()
@@ -12,7 +11,7 @@ def search_logic(form,data,c_id,a_id ):
     'Authorization': a_id,
     'Content-Type': 'text/plain'
     }
-    response = AsyncRequest.send("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload)
     info = response.json()
     print(info)
     return info
