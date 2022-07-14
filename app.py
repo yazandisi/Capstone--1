@@ -28,7 +28,6 @@ def index():
 @app.route('/game_result', methods=["GET", "POST"])
 def game_result():
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
-    info = data
     games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
     game = {"lookup_id": [g.api_id for g in games],
     "user_id": [g.user_id for g in games]
@@ -38,7 +37,7 @@ def game_result():
     if form.validate_on_submit():
         data.append(search_logic(form,data,c_id,a_id ))
         return redirect('/game_result')
-    return render_template('game_result.html', info=info, size=size, form=form, game=game)
+    return render_template('game_result.html', info=data, size=size, form=form, game=game)
 
 @app.route('/game-home',methods=["GET","POST"])
 def game_home():

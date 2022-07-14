@@ -5,7 +5,7 @@
 //     }, 2000); // set the time here
 //   });
 // });
-
+window.location.reload();
 allForms = document.querySelectorAll(".form");
 let storePics = [];
 async function getFavData(val, title, id, len) {
