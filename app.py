@@ -35,6 +35,7 @@ def game_result():
     size = len(data)
     form = AddGameForm()
     if form.validate_on_submit():
+        data.clear()
         data.append(search_logic(form,data,c_id,a_id ))
         return redirect('/game_result')
     return render_template('game_result.html', info=data, size=size, form=form, game=game)

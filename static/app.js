@@ -6,6 +6,9 @@
 //   });
 // });
 // window.location.reload();
+window.addEventListener("DOMContentLoaded", (event) => {
+  console.log("DOM fully loaded and parsed");
+});
 allForms = document.querySelectorAll(".form");
 let storePics = [];
 async function getFavData(val, title, id, len) {
