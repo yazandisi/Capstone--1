@@ -56,3 +56,5 @@ for (let form of allForms) {
     }
   });
 }
+let info = document.getElementById("info");
+console.log(info);
