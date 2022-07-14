@@ -20,17 +20,15 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 data=[]
-inc = 0
 
 @app.route('/')
 def index():
     """Populates the login/sign-up page"""
     return render_template("index.html")
 
-@app.route('/yes/<int:inc>', methods=["GET", "POST"])
-def game_result(inc):
+@app.route('/game_result', methods=["GET", "POST"])
+def game_result():
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
-    inc += 1
     ts = datetime.datetime.now().timestamp()
     games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
     game = {"lookup_id": [g.api_id for g in games],
@@ -39,26 +37,22 @@ def game_result(inc):
     size = len(data)
     form = AddGameForm()
     if form.validate_on_submit():
-        inc += 1
         data.append(search_logic(form,data,c_id,a_id ))
         print(data)
-        return redirect(f'/yes/{inc}')
+        return redirect('/game_result')
     return render_template('game_result.html', info=data, size=size, form=form, game=game, ts=ts)
 
 @app.route('/game-home',methods=["GET","POST"])
 def game_home():
     """Renders the post login screen. Checks for saved games and created catergories. Also handels form subs"""
-    
     games = Game.query.all()
     cat_form = AddCategoryForm()
     if "user_id" not in session:
         flash("Please login!")
         return redirect('/')
-    inc = 0
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
-        inc += 1
         print('************DATA BEFORE APPEND******************')
         print(data)
         print('************DATA BEFORE APPEND******************')
@@ -66,7 +60,7 @@ def game_home():
         print('************DATA AFTER APPEND******************')
         print(data)
         print('************DATA AFTER APPEND******************')
-        return redirect(f'/yes/{inc}', code=307)
+        return redirect('/game_result', code=307)
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
