@@ -14,11 +14,14 @@ def search_logic(form,data,c_id,a_id ):
     'Content-Type': 'text/plain'
     }
     response = requests.request("POST", url, headers=headers, data=payload)
-    info = response.json()
-    print(info)
+
+    
+    
     print('**********PRINT TIME****************')
-    
-    
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    info = response.json()
     return info
 
 def search_by_id_logic(id,data,c_id,a_id ):
