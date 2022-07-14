@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, flash, session, request, jso
 import time
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
+
 req_session = requests.session
 from models import db, connect_db, Category_Game, Category, Game, User, Comment
 from forms import UserForm, AddGameForm, AddCategoryForm
@@ -28,7 +29,6 @@ def index():
 
 @app.route('/game_result', methods=["GET", "POST"])
 def game_result():
-    data = data[:10]
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
     games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
     game = {"lookup_id": [g.api_id for g in games],
