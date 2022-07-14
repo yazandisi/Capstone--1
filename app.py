@@ -51,10 +51,11 @@ def game_home():
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
+        data.clear()
         data.append(search_logic(form,data,c_id,a_id))
         print(data)
         while True:
-            time.sleep(5)
+            time.sleep(2)
             try:   
                 return redirect('/game_result')
             except:
