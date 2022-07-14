@@ -28,6 +28,7 @@ def index():
 
 @app.route('/game_result', methods=["GET", "POST"])
 def game_result():
+    data = data[:10]
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
     games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
     game = {"lookup_id": [g.api_id for g in games],
@@ -51,18 +52,9 @@ def game_home():
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
-        data.clear()
-        data.append(search_logic(form,data,c_id,a_id))
-        data.clear()
         data.append(search_logic(form,data,c_id,a_id))
         print(data)
-        while True:
-            time.sleep(2)
-            try:   
-                return redirect('/game_result')
-            except:
-                return redirect('/game_result')
-
+        return redirect('/game_result')
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
