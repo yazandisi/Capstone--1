@@ -2,6 +2,7 @@ from s import c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
+import datetime
 req_session = requests.session
 from models import db, connect_db, Category_Game, Category, Game, User, Comment
 from forms import UserForm, AddGameForm, AddCategoryForm
@@ -28,6 +29,7 @@ def index():
 @app.route('/game_result', methods=["GET", "POST"])
 def game_result():
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
+    ts = datetime.datetime.now().timestamp()
     games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
     game = {"lookup_id": [g.api_id for g in games],
     "user_id": [g.user_id for g in games]
@@ -35,7 +37,6 @@ def game_result():
     size = len(data)
     form = AddGameForm()
     if form.validate_on_submit():
-        data.clear()
         data.append(search_logic(form,data,c_id,a_id ))
         return redirect('/game_result')
     return render_template('game_result.html', info=data, size=size, form=form, game=game)
