@@ -3,6 +3,7 @@ import datetime
 def search_logic(form,data,c_id,a_id ):
     """Uses IGDB API to get JSON with game details using string"""
     data.clear()
+    print(datetime.datetime.now().timestamp())
     title = form.title.data
     url = "https://api.igdb.com/v4/games"
    
@@ -16,7 +17,8 @@ def search_logic(form,data,c_id,a_id ):
     info = response.json()
     print(info)
     print('**********PRINT TIME****************')
-    print(datetime.datetime.now().timestamp())
+    
+    
     return info
 
 def search_by_id_logic(id,data,c_id,a_id ):
