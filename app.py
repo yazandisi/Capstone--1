@@ -50,8 +50,13 @@ def game_home():
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
-        data.append(search_logic(form,data,c_id,a_id))
+        print('************DATA BEFORE APPEND******************')
         print(data)
+        print('************DATA BEFORE APPEND******************')
+        data.append(search_logic(form,data,c_id,a_id))
+        print('************DATA AFTER APPEND******************')
+        print(data)
+        print('************DATA AFTER APPEND******************')
         return redirect('/game_result')
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
