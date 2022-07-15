@@ -1,5 +1,3 @@
-from crypt import methods
-from urllib3 import Retry
 from s import c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
@@ -28,10 +26,6 @@ def index():
     """Populates the login/sign-up page"""
     return render_template("index.html")
 
-@app.route('/direction', methods=['POST'])
-def move_to_games_res():
-    return redirect('/game_result')
-
 @app.route('/game_result', methods=["GET", "POST"])
 def game_result():
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
@@ -59,6 +53,12 @@ def game_home():
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
+        ts = datetime.datetime.now().timestamp()
+        games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
+        game = {"lookup_id": [g.api_id for g in games],
+        "user_id": [g.user_id for g in games]
+                }
+        size = len(data)
         print('************DATA BEFORE APPEND******************')
         print(data)
         print('************DATA BEFORE APPEND******************')
@@ -66,7 +66,7 @@ def game_home():
         print('************DATA AFTER APPEND******************')
         print(data)
         print('************DATA AFTER APPEND******************')
-        return redirect('/direction', code=307)
+        return render_template('first_result.html', info=data, size=size, form=form, game=game, ts=ts)
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
