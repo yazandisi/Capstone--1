@@ -29,6 +29,7 @@ def index():
 @app.route('/game_result', methods=["GET", "POST"])
 def game_result():
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
+    new_data = data[:1][:1][:1][:1]
     ts = datetime.datetime.now().timestamp()
     games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
     game = {"lookup_id": [g.api_id for g in games],
@@ -41,7 +42,7 @@ def game_result():
         data.append(search_logic(form,data,c_id,a_id ))
         print(data)
         return redirect('/game_result')
-    return render_template('game_result.html', info=data, size=size, form=form, game=game, ts=ts)
+    return render_template('game_result.html', info=new_data, size=size, form=form, game=game, ts=ts)
 
 @app.route('/game-home',methods=["GET","POST"])
 def game_home():
@@ -59,6 +60,7 @@ def game_home():
         print(data)
         print('************DATA BEFORE APPEND******************')
         data.append(search_logic(form,data,c_id,a_id))
+        
         print('************DATA AFTER APPEND******************')
         print(data)
         print('************DATA AFTER APPEND******************')
