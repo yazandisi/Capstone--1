@@ -26,22 +26,6 @@ def index():
     """Populates the login/sign-up page"""
     return render_template("index.html")
 
-@app.route('/game_result', methods=["GET", "POST"])
-def game_result():
-    """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
-    ts = datetime.datetime.now().timestamp()
-    games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
-    game = {"lookup_id": [g.api_id for g in games],
-    "user_id": [g.user_id for g in games]
-    }
-    size = len(data)
-    form = AddGameForm()
-    if form.validate_on_submit():
-        data.append(search_logic(form,data,c_id,a_id ))
-        print(data)
-        return redirect('/game_result')
-    return render_template('game_result.html', info=data, size=size, form=form, game=game, ts=ts)
-
 @app.route('/game-home',methods=["GET","POST"])
 def game_home():
     """Renders the post login screen. Checks for saved games and created catergories. Also handels form subs"""
