@@ -2,7 +2,6 @@ from s import c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
-import datetime
 req_session = requests.session
 from models import db, connect_db, Category_Game, Category, Game, User, Comment
 from forms import UserForm, AddGameForm, AddCategoryForm
@@ -37,14 +36,13 @@ def game_home():
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
     if form.validate_on_submit():
-        ts = datetime.datetime.now().timestamp()
         games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
         game = {"lookup_id": [g.api_id for g in games],
         "user_id": [g.user_id for g in games]
                 }
         size = len(data)
         data.append(search_logic(form,data,c_id,a_id))
-        return render_template('first_result.html', info=data, size=size, form=form, game=game, ts=ts)
+        return render_template('first_result.html', info=data, size=size, form=form, game=game)
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
