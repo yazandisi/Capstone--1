@@ -1,3 +1,5 @@
+from crypt import methods
+from urllib3 import Retry
 from s import c_id, a_id
 from flask import Flask, render_template, redirect, flash, session, request, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
@@ -26,10 +28,13 @@ def index():
     """Populates the login/sign-up page"""
     return render_template("index.html")
 
+@app.route('/direction', methods=['POST'])
+def move_to_games_res():
+    return redirect('/game_result')
+
 @app.route('/game_result', methods=["GET", "POST"])
 def game_result():
     """Renders game resutls using the IGDB API, this IPO happens in the Search_logic def()"""
-    new_data = data[:1][:1][:1][:1]
     ts = datetime.datetime.now().timestamp()
     games = Game.query.filter_by(favorite=True, user_id=session['user_id']).all()
     game = {"lookup_id": [g.api_id for g in games],
@@ -38,11 +43,10 @@ def game_result():
     size = len(data)
     form = AddGameForm()
     if form.validate_on_submit():
-        data.clear()
         data.append(search_logic(form,data,c_id,a_id ))
         print(data)
         return redirect('/game_result')
-    return render_template('game_result.html', info=new_data, size=size, form=form, game=game, ts=ts)
+    return render_template('game_result.html', info=data, size=size, form=form, game=game, ts=ts)
 
 @app.route('/game-home',methods=["GET","POST"])
 def game_home():
@@ -54,17 +58,15 @@ def game_home():
         return redirect('/')
     form = AddGameForm()
     category = Category.query.filter_by(user_id=session['user_id']).all()
-    data.clear()
     if form.validate_on_submit():
         print('************DATA BEFORE APPEND******************')
         print(data)
         print('************DATA BEFORE APPEND******************')
         data.append(search_logic(form,data,c_id,a_id))
-        
         print('************DATA AFTER APPEND******************')
         print(data)
         print('************DATA AFTER APPEND******************')
-        return redirect('/game_result', code=307)
+        return redirect('/direction', code=307)
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
         description = cat_form.description.data
