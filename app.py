@@ -43,13 +43,7 @@ def game_home():
         "user_id": [g.user_id for g in games]
                 }
         size = len(data)
-        print('************DATA BEFORE APPEND******************')
-        print(data)
-        print('************DATA BEFORE APPEND******************')
         data.append(search_logic(form,data,c_id,a_id))
-        print('************DATA AFTER APPEND******************')
-        print(data)
-        print('************DATA AFTER APPEND******************')
         return render_template('first_result.html', info=data, size=size, form=form, game=game, ts=ts)
     elif cat_form.validate_on_submit():
         name = cat_form.name.data
