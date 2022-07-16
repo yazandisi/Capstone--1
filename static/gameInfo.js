@@ -22,7 +22,7 @@ async function handleClick() {
   }
 }
 
-//This function uses the search term to get the data
+//This function uses the search term to get the pic data
 async function getFromApi(searchTerm) {
   const response = await axios.get(
     `http://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym`
