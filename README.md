@@ -19,8 +19,8 @@ pip install -r requirements.txt
 
 
 ## Link to APIs
-https://api-docs.igdb.com/#endpoints
-https://dev.twitch.tv/docs/api
+* https://api-docs.igdb.com/#endpoints
+* https://dev.twitch.tv/docs/api
 
 ## Link to Site
 https://video-game-extract.herokuapp.com/
