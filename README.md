@@ -18,8 +18,9 @@ pip install -r requirements.txt
 * Access the main game page through the saved games area or from a custom category.
 
 
-## Link to API
+## Link to APIs
 https://api-docs.igdb.com/#endpoints
+https://dev.twitch.tv/docs/api
 
 ## Link to Site
 https://video-game-extract.herokuapp.com/
