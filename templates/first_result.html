@@ -81,7 +81,9 @@
     
       {% endfor %} {% endfor %} {% endfor %}
     </div>
-    <h1 id="info">{{info}}</h1>
+    {% if info == [[]] %}
+    <h4 class="none_here">No Game Matches Your Search</h4>
+    {% endif %}
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
     <script src="/static/app.js"></script>
     {% endblock %}

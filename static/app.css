@@ -403,3 +403,9 @@ body {
 .submitClass {
   display: none;
 }
+
+.none_here {
+  text-align: center;
+  color: maroon;
+  background-color: #000000;
+}
