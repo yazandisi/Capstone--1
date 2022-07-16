@@ -1,4 +1,5 @@
 # Capstone: Video Game Extract 
+https://video-game-extract.herokuapp.com/
 A videogame search engine/database that allows users to search for a game and add it to their home page. Users can also create custom categories to add their games too. Once a game is added to your profile, you can access its main page.
 
 ## Installation
