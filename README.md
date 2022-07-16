@@ -14,7 +14,12 @@ pip install -r requirements.txt
 * Create custom video game lists
 * Save your favorite Video games
 * Access favorite game pages and:
-** Acces the game guids
+  * Quick search the game guide
+  * Quick search the game wiki
+  * Watch live twitch feed
+  * Watch a youtube trailer or gameplay
+  * Have access to the latest twitch twitter feed
+  * Add personal note about that game that you can access later. 
 
 ## Usage
 * Create a user login/password or login if you are a user already.
