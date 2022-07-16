@@ -30,17 +30,11 @@
     {% endif %} {% endfor %}
 
     <div class="quick_link_and_imgs">
-      <span>
-        <form action="/logout" method="POST" class="btn btn-link">
-          <button type="submit" class="btn btn-link">logout</button>
-        </form>
-      </span>
+      <span> </span>
       <span>
         <a class="" href="/game-home"
           ><button class="btn btn-link">Home</button></a
         >
-      </span>
-      <span>
         <a
           class="btn btn-link"
           href="https://gamefaqs.gamespot.com/search?game={{game.title}}"
@@ -48,8 +42,6 @@
           rel="noopener noreferrer"
           >Game Guide Search
         </a>
-      </span>
-      <span>
         <a
           class="btn btn-link"
           href="https://www.fandom.com/?s={{game.title}}"
@@ -57,21 +49,26 @@
           rel="noopener noreferrer"
           >Fandom Quick Search
         </a>
+        <form action="/logout" method="POST" class="btn btn-link">
+          <button type="submit" class="btn btn-link">logout</button>
+        </form>
       </span>
+      <span>
+        <div class="name">
+          <h1 class="h1_in_name">
+            {{game.title}}
+            <div class="game_info_img">
+              {% for i in img %}
+              <img src="{{i.url}}" alt="" />
+              {% endfor %}
+            </div>
+          </h1>
+        </div></span
+      >
     </div>
   </nav>
 
   <body class="info_body">
-    <div class="name">
-      <h1 class="h1_in_name">
-        {{game.title}}
-        <div class="game_info_img">
-          {% for i in img %}
-          <img src="{{i.url}}" alt="" />
-          {% endfor %}
-        </div>
-      </h1>
-    </div>
     <div class="vid">
       <h3>Twitch TV</h3>
     </div>
@@ -82,7 +79,7 @@
         <div id="DivID"></div>
         <script type="text/javascript">
           var options = {
-            width: 754,
+            width: 600,
             height: 380,
             channel: "{{live_video}}",
           };
@@ -95,7 +92,7 @@
       <h3 class="">Youtube Trailer / Gameplay</h3>
     </div>
     <iframe
-      width="754"
+      width="600"
       height="380"
       src="https://www.youtube.com/embed/{{vid_data[0]['video_id']}}"
       allowfullscreens

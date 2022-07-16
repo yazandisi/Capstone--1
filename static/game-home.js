@@ -1,5 +1,5 @@
 let delForm = document.getElementsByClassName("home_del_form");
-//comm
+
 for (let btn of delForm) {
   btn.addEventListener("click", handleClickLoad);
 }
@@ -30,6 +30,5 @@ for (i = 0; i < coll.length; i++) {
 }
 function handleClickLoad(event) {
   event.pre;
-  console.log(event.target);
   event.target.classList.add("submitClass");
 }

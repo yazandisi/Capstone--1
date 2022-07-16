@@ -262,21 +262,23 @@ body {
   float: inline-end;
 }
 .nav_bar span a {
-  color: black;
   width: auto;
-  font-size: 20px;
+  font-size: 11px;
   color: white;
+
+  float: left;
+  display: inline;
+  margin-top: 2%;
+  margin-left: 3%;
 }
 .nav_bar span button {
   color: black;
   width: auto;
-  font-size: 20px;
+  font-size: 11px;
   color: white;
 }
 .nav_bar span form {
-  color: black;
-  width: auto;
-  margin-bottom: 5px;
+  float: right;
 }
 
 .info_body {
@@ -284,11 +286,10 @@ body {
   background-color: #000000;
 }
 .js_img {
-  display: inline;
-  width: 12%;
-  height: 10%;
-  border-radius: 70%;
-  margin-top: 1%;
+  width: 32.4em;
+  height: 10em;
+  margin-right: 2%;
+  margin-bottom: 2%;
   border: inset thin white;
 }
 .game_info_img {
@@ -303,17 +304,15 @@ body {
 .h1_in_name {
   background-color: #000000;
   text-align: center;
-  margin-top: 1%;
+  margin-top: 3.5vw;
   color: white;
 }
 .game_info_img {
   margin-bottom: -1%;
 }
 .video_and_twitch {
+  border: solid;
   margin-left: 25%;
-
-  width: auto;
-  height: auto;
 }
 .vid h3 {
   background-color: black;

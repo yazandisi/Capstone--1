@@ -1,14 +1,3 @@
-// jQuery(document).ready(function ($) {
-//   $(window).load(function () {
-//     setTimeout(function () {
-//       $("#preloader").fadeOut("slow", function () {});
-//     }, 2000); // set the time here
-//   });
-// });
-// window.location.reload();
-window.addEventListener("load", (event) => {
-  console.log("DOM fully loaded and parsed");
-});
 allForms = document.querySelectorAll(".form");
 let storePics = [];
 async function getFavData(val, title, id, len) {
@@ -45,16 +34,11 @@ for (let form of allForms) {
       .children[2].children;
   form.addEventListener("click", () => {
     if (input.checked == true) {
-      console.log("Turned on");
-      console.log(len[0]);
       getFavData(input.value, title, apiId, len);
     }
     if (input.checked == false) {
-      console.log(input.value);
-      console.log(title);
       deleteFavData(input.value, title);
     }
   });
 }
 let info = document.getElementById("info");
-console.log(info);
