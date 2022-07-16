@@ -10,6 +10,11 @@ You must get an Authorization ID and Key from https://api-docs.igdb.com and add 
 ```bash
 pip install -r requirements.txt
 ```
+## Features
+* Create custom video game lists
+* Save your favorite Video games
+* Access favorite game pages and:
+** Acces the game guids
 
 ## Usage
 * Create a user login/password or login if you are a user already.
