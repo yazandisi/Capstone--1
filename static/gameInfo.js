@@ -27,6 +27,5 @@ async function getFromApi(searchTerm) {
   const response = await axios.get(
     `https://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym`
   );
-  console.log(response.data);
   return response.data;
 }

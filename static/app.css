@@ -288,8 +288,9 @@ body {
 .js_img {
   width: 32.4em;
   height: 10em;
-  margin-right: 2%;
-  margin-bottom: 2%;
+  margin-right: 2vw;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
   border: inset thin white;
 }
 .game_info_img {
@@ -310,9 +311,10 @@ body {
 .game_info_img {
   margin-bottom: -1%;
 }
-.video_and_twitch {
-  border: solid;
-  margin-left: 25%;
+
+.hold {
+  width: 100%;
+  text-align: center;
 }
 .vid h3 {
   background-color: black;
@@ -320,8 +322,11 @@ body {
   margin-top: 5%;
   color: wheat;
 }
-.frame {
-  margin-left: 25%;
+.youtube {
+  width: 100%;
+}
+.frame_youtube {
+  text-align: center;
 }
 
 .div_youtube_title h3 {
