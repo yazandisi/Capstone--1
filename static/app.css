@@ -263,7 +263,7 @@ body {
 }
 .nav_bar span a {
   width: auto;
-  font-size: 11px;
+  font-size: 13px;
   color: white;
 
   float: left;
@@ -274,7 +274,7 @@ body {
 .nav_bar span button {
   color: black;
   width: auto;
-  font-size: 11px;
+  font-size: 13px;
   color: white;
 }
 .nav_bar span form {
