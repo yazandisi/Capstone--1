@@ -42,7 +42,6 @@ content %}
                 {% for cat in category %}
                 <form action="/category/game/{{game.id}}" method="POST">
                   {% endfor %}
-                  <label for="addCat">Add to Category</label>
                   <select name="addCat" id="addCat">
                     <option value="">Select your option</option>
                     {% for cat in category %}
@@ -82,7 +81,6 @@ content %}
                 {{ cat_form.hidden_tag() }} {% for field in cat_form if
                 field.widget.input_type != 'hidden'%}
                 <td>
-                  {{field.label(class_="form-label")}}
                   {{field(class_="form-control")}} {% for err in field.errors %}
                   {{err}} {% endfor %}
                 </td>
